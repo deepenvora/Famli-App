@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Famli — Family Wealth Prototype</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <style>
+    :root {
+      --brand: #5B2EE0;
+      --brand-deep: #4922B8;
+      --brand-soft: #EDE8FB;
+      --brand-soft-2: #F6F3FE;
+      --bg: #FFFFFF;
+      --card: #FFFFFF;
+      --ink: #111111;
+      --ink-2: #6B7280;
+      --ink-3: #9CA3AF;
+      --pos: #16A34A;
+      --neg: #DC2626;
+      --warn: #D97706;
+      --border: #E5E7EB;
+    }
+    html, body { font-family: 'Inter', system-ui, sans-serif; background: #0f0d18; color: var(--ink); }
+    body { margin: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 32px 16px; }
+    * { -webkit-tap-highlight-color: transparent; }
+    .scroll-area::-webkit-scrollbar { width: 0; height: 0; }
+    .scroll-area { scrollbar-width: none; }
+    .phone {
+      width: 390px;
+      height: 844px;
+      background: var(--bg);
+      border-radius: 44px;
+      box-shadow: 0 40px 80px -20px rgba(91,46,224,0.35), 0 0 0 10px #1c1830, 0 0 0 12px #2a2541;
+      overflow: hidden;
+      position: relative;
+    }
+    .stage-bg {
+      position: fixed; inset: 0; z-index: -1;
+      background:
+        radial-gradient(60% 50% at 20% 15%, rgba(91,46,224,0.30), transparent 60%),
+        radial-gradient(50% 40% at 85% 80%, rgba(91,46,224,0.18), transparent 60%),
+        #0f0d18;
+    }
+    .label-overline { letter-spacing: 0.06em; text-transform: uppercase; font-size: 10px; font-weight: 600; }
+    .ink { color: var(--ink); }
+    .ink-2 { color: var(--ink-2); }
+    .ink-3 { color: var(--ink-3); }
+    .card { background: var(--card); border-radius: 16px; box-shadow: none; border: 1px solid #D5D7DA; }
+    .chip { border-radius: 999px; padding: 4px 10px; font-size: 11px; font-weight: 500; }
+    .divider { border-top: 1px solid var(--border); }
+    .fab-glow { box-shadow: 0 10px 28px -6px rgba(91,46,224,0.6), inset 0 0 16px rgba(255,255,255,0.18); }
+    .header-grad {
+      background: linear-gradient(180deg, #5B2EE0 0%, #5125CD 100%);
+    }
+    .fade-in { animation: fade 280ms ease both; }
+    @keyframes fade { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+    .sheet-in { animation: sheetUp 320ms cubic-bezier(0.2,0.8,0.2,1) both; }
+    @keyframes sheetUp { from { transform: translateY(100%); } to { transform: none; } }
+    .backdrop-in { animation: backdrop 220ms ease both; }
+    @keyframes backdrop { from { opacity: 0; } to { opacity: 1; } }
+    .toast-in { animation: toast 240ms ease both; }
+    @keyframes toast { from { opacity: 0; transform: translate(-50%, 8px); } to { opacity: 1; transform: translate(-50%, 0); } }
+    .typing span { animation: blink 1.2s infinite both; display: inline-block; width: 6px; height: 6px; background: #5B2EE0; border-radius: 50%; margin-right: 4px; }
+    .typing span:nth-child(2) { animation-delay: 0.2s; }
+    .typing span:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes blink { 0%, 80%, 100% { opacity: 0.2; transform: translateY(0); } 40% { opacity: 1; transform: translateY(-3px); } }
+    .shimmer {
+      background:
+        radial-gradient(60% 60% at 30% 30%, rgba(255,255,255,0.45), transparent 60%),
+        radial-gradient(80% 80% at 70% 80%, #6B36FF, #4922B8 60%, #2D1280 100%);
+    }
+    .ring-brand { box-shadow: 0 0 0 2px var(--brand) inset; }
+    .pill-tab { transition: all 200ms ease; }
+    .stripes {
+      background-image: repeating-linear-gradient(135deg, rgba(91,46,224,0.06) 0 10px, transparent 10px 20px);
+    }
+    input, textarea, button, select { font-family: inherit; }
+  </style>
+</head>
+<body>
+  <div class="stage-bg"></div>
+  <div id="root"></div>
+
+  <script type="text/babel" src="src/shared.jsx"></script>
+  <script type="text/babel" src="src/screens-wealth.jsx"></script>
+  <script type="text/babel" src="src/screens-goals.jsx"></script>
+  <script type="text/babel" src="src/screens-misc.jsx"></script>
+  <script type="text/babel" src="src/screens-extras.jsx"></script>
+  <script type="text/babel" src="src/screens-will.jsx"></script>
+  <script type="text/babel" src="src/app.jsx"></script>
+</body>
+</html>
