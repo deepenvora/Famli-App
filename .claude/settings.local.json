@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__c6b9f247-7ede-4edc-995a-d7d797635d6a__use_figma",
+      "mcp__c6b9f247-7ede-4edc-995a-d7d797635d6a__get_screenshot",
+      "WebFetch(domain:api.anthropic.com)",
+      "Bash(curl -s \"https://api.anthropic.com/v1/design/h/HlbdebO978d8sY1rh6GK1A?open_file=index.html\" -o /tmp/design_file.gz)",
+      "Read(//tmp/**)",
+      "Bash(mkdir -p /tmp/design_extract)",
+      "Bash(gunzip -c /tmp/design_file.gz)",
+      "Read(//private/tmp/design_extract/**)",
+      "Bash(tar -xf extracted_file)",
+      "Bash(cp \"/tmp/design_extract/family-wealth-mgt-app/project/index.html\" \"/Users/deepenvora/Documents/PROJECTS/MCP \\(Figma\\) Fintech app/index.html\")",
+      "Bash(cp \"/tmp/design_extract/family-wealth-mgt-app/project/src/shared.jsx\" \"/Users/deepenvora/Documents/PROJECTS/MCP \\(Figma\\) Fintech app/src/shared.jsx\")",
+      "Bash(cp \"/tmp/design_extract/family-wealth-mgt-app/project/src/screens-wealth.jsx\" \"/Users/deepenvora/Documents/PROJECTS/MCP \\(Figma\\) Fintech app/src/screens-wealth.jsx\")",
+      "Bash(cp \"/tmp/design_extract/family-wealth-mgt-app/project/src/screens-goals.jsx\" \"/Users/deepenvora/Documents/PROJECTS/MCP \\(Figma\\) Fintech app/src/screens-goals.jsx\")",
+      "Bash(cp \"/tmp/design_extract/family-wealth-mgt-app/project/src/screens-misc.jsx\" \"/Users/deepenvora/Documents/PROJECTS/MCP \\(Figma\\) Fintech app/src/screens-misc.jsx\")",
+      "mcp__Claude_Preview__preview_start"
+    ]
+  }
+}
